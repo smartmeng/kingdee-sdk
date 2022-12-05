@@ -1,6 +1,6 @@
-const getAuthToken = async function (params) {
-    const { default: getAuthToken } = await import('./functions/getAuthToken.js')
-    return await getAuthToken(params)
+const getAppToken = async function (params) {
+    const { default: getAppToken } = await import('./functions/getAppToken.js')
+    return await getAppToken(params)
 }
 
 const pushAppAuthorize = async function (params) {
@@ -8,7 +8,19 @@ const pushAppAuthorize = async function (params) {
     return await pushAppAuthorize(params)
 }
 
+const invokeApi = async function (params) {
+    const { invokeApi } = await import('./functions/invokeApi.js')
+    return await invokeApi(params)
+}
+
+const invokeApiWithConfig = async function (params) {
+    const { invokeApiWithConfig } = await import('./functions/invokeApi.js')
+    return invokeApiWithConfig(params)
+}
+
 module.exports = {
-    getAuthToken: getAuthToken,
-    pushAppAuthorize: pushAppAuthorize
+    getAppToken: getAppToken,
+    pushAppAuthorize: pushAppAuthorize,
+    invokeApi: invokeApi,
+    invokeApiWithConfig: invokeApiWithConfig
 }

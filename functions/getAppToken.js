@@ -1,12 +1,13 @@
 import fetch from 'node-fetch'
 import getSignature from './getSignature.js'
+import sha256AndBase64 from './sha256AndBase64.js'
 import randomInt from './randomInt.js'
 import getQueryStringFromParams from './getQueryStringFromParams.js'
 
-const pushAppAuthorize = async function ({ clientID, clientSecret, outerInstanceId }) {
-    const url = 'https://api.kingdee.com/jdyconnector/app_management/push_app_authorize'
-    const method = 'POST'
-    const path = '/jdyconnector/app_management/push_app_authorize'
+const getAppToken = async function ({ appKey, appSecret, clientID, clientSecret }) {
+    const url = 'https://api.kingdee.com/jdyconnector/app_management/kingdee_auth_token'
+    const method = 'GET'
+    const path = '/jdyconnector/app_management/kingdee_auth_token'
     const headers = {
         'Content-Type': 'application/json',
         'X-Api-ClientID': clientID,
@@ -17,7 +18,8 @@ const pushAppAuthorize = async function ({ clientID, clientSecret, outerInstance
         'X-Api-Signature': ''
     }
     const params = {
-        outerInstanceId: outerInstanceId
+        app_key: appKey,
+        app_signature: sha256AndBase64(appKey, appSecret),
     }
     const queryString = getQueryStringFromParams(params)
 
@@ -31,4 +33,4 @@ const pushAppAuthorize = async function ({ clientID, clientSecret, outerInstance
     return await response.json()
 }
 
-export default pushAppAuthorize
+export default getAppToken

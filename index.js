@@ -1,9 +1,12 @@
-import getAuthToken from './functions/getAuthToken.js'
+import getAppToken from './functions/getAppToken.js'
 import pushAppAuthorize from './functions/pushAppAuthorize.js'
+import { invokeApi, invokeApiWithConfig } from './functions/invokeApi.js'
 
 export default {
-    getAuthToken: getAuthToken,
-    pushAppAuthorize: pushAppAuthorize
+    getAppToken: getAppToken,
+    pushAppAuthorize: pushAppAuthorize,
+    invokeApi: invokeApi,
+    invokeApiWithConfig: invokeApiWithConfig
 }
 
-export { getAuthToken, pushAppAuthorize }
+export { getAppToken, pushAppAuthorize, invokeApi, invokeApiWithConfig }

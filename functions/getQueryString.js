@@ -1,4 +1,9 @@
+import * as R from 'ramda'
+
 const getQueryString = function (queryString) {
+    if (R.isEmpty(queryString)) {
+        return ''
+    }
     let queryStrings = queryString.split('&')
     queryStrings = queryStrings.sort()
     let queryStringResult = ''

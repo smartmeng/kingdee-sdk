@@ -4,7 +4,6 @@ import getQueryString from './getQueryString.js'
 
 const getSignature = function ({ path, method, headers, queryString, clientSecret }) {
     path = encodeURIComponent(path)
-
     queryString = getQueryString(queryString)
     // console.log("queryString", queryString)
 

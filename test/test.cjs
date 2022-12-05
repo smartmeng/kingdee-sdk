@@ -1,6 +1,5 @@
-// import kingdeeSdk from "../index.js"
-const kingdeeSdk = require('../index.cjs');
 (async () => {
+    const kingdeeSdk = require('../index.cjs')
     const clientID = ''
     const clientSecret = ''
     const appKey = ''
@@ -9,7 +8,7 @@ const kingdeeSdk = require('../index.cjs');
     const uid = ''
     const appToken = ''
     const domain = 'https://tf.jdy.com'
-    
+
     const url = 'https://api.kingdee.com/jdy/v2/bd/material'
     const method = 'GET'
     const params = {
@@ -23,10 +22,11 @@ const kingdeeSdk = require('../index.cjs');
     const pushAppAuthorizeResult = await kingdeeSdk.pushAppAuthorize({ clientID, clientSecret, outerInstanceId })
     console.log(pushAppAuthorizeResult)
 
-    const invokeApiClient = kingdeeSdk.invokeApiWithConfig({ clientID, clientSecret, appToken, domain })
+    const invokeApiClient = await kingdeeSdk.invokeApiWithConfig({ clientID, clientSecret, appToken, domain })
     const invokeApiClientResult = await invokeApiClient({ url, method, params, data })
     console.log(invokeApiClientResult)
 
-    const invokeApiResult = await kingdeeSdk.invokeApi({ clientID, clientSecret, appToken, domain, url, method, params })
+
+    const invokeApiResult = await kingdeeSdk.invokeApi({ clientID, clientSecret, appToken, domain, url, method, params, data })
     console.log(invokeApiResult)
 })()
