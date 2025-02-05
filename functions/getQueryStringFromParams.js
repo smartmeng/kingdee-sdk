@@ -1,14 +1,14 @@
-import * as R from 'ramda'
-
 const getQueryStringFromParams = function (params) {
     let queryString = ''
-    R.forEachObjIndexed(function (value, key) {
-        if (queryString.length > 0) {
-            queryString = queryString + "&" + key + "=" + encodeURIComponent(value)
+    const queryArray = Object.entries(params).reduce((acc, [key, value]) => {
+        if (Array.isArray(value)) {
+            value.forEach(item => acc.push(`${key}=${encodeURIComponent(item)}`));
         } else {
-            queryString = key + "=" + encodeURIComponent(value)
+            acc.push(`${key}=${encodeURIComponent(value)}`);
         }
-    }, params)
+        return acc;
+    }, []);
+    queryString = queryArray.join('&');
     return queryString
 }
 
