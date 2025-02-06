@@ -1,15 +1,17 @@
 const getQueryStringFromParams = function (params) {
-    let queryString = ''
-    const queryArray = Object.entries(params).reduce((acc, [key, value]) => {
+    const searchParams = new URLSearchParams();
+    
+    Object.entries(params).forEach(([key, value]) => {
         if (Array.isArray(value)) {
-            value.forEach(item => acc.push(`${key}=${encodeURIComponent(item)}`));
+            value.forEach(item => searchParams.append(key, item));
         } else {
-            acc.push(`${key}=${encodeURIComponent(value)}`);
+            searchParams.append(key, value);
         }
-        return acc;
-    }, []);
-    queryString = queryArray.join('&');
-    return queryString
+    });
+    
+    const queryString = searchParams.toString();
+    // console.log('[调试] 最终查询字符串:', queryString);
+    return queryString;
 }
 
 export default getQueryStringFromParams
